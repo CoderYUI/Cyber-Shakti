@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faux Deepfake Detector</title>
+    <style>
+        @font-face {
+            font-family: 'EtudeNoir';
+            src: url('../fonts/EtudeNoire.ttf') format('opentype');
+        }
+
+        @font-face {
+            font-family: 'GeneralSans';
+            src: url('../fonts/GeneralSans.otf') format('truetype');
+        }
+
+        .etude-noir-font {
+            font-family: 'EtudeNoir', sans-serif;
+        }
+
+        .general-sans-font {
+            font-family: 'GeneralSans', sans-serif;
+        }
+    </style>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 350px;
+            height: 460px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ffffff;
+            border-radius: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            color: #333333;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .logo-small {
+            width: 32px;
+            height: 32px;
+        }
+
+        .title {
+            font-family: 'EtudeNoir', sans-serif;
+            font-size: 36px;
+            background: linear-gradient(45deg, #ff3366, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-family: 'GeneralSans', sans-serif;
+            font-size: 14px;
+            color: #333333;
+            text-align: center;
+            margin-top: -15px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .content {
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .result-text {
+            font-size: 72px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            color: #333333;
+        }
+
+        .fake {
+            color: #ff3366;
+            background-color: rgba(255, 51, 102, 0.1);
+        }
+
+        .real {
+            color: #00cc44;
+            background-color: rgba(0, 204, 68, 0.1);
+        }
+
+        .description {
+            font-size: 16.6px;
+            line-height: 1.4;
+            opacity: 0.82;
+            max-width: 240px;
+            margin: 0 auto;
+            color: #666666;
+        }
+
+        .tips-box {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .tips-box.fake {
+            background-color: rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+        }
+
+        .tips-box.real {
+            background-color: rgba(0, 204, 68, 0.1);
+            border: 1px solid rgba(0, 204, 68, 0.3);
+        }
+
+        .tips-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+    </style>
+
+    <script>
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            try {
+                window.close();
+            } catch (error) {
+                console.error("Popup close failed:", error);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container" id="popup-container">
+        <nav>
+            <img src="../logo1.png" alt="Logo 1" class="logo-small">
+            <img src="../logo2.png" alt="Logo 2" class="logo-small">
+        </nav>
+        
+        <h1 class="title">Cyber Shakti</h1>
+        <div class="subtitle">DeepShield: AI-Powered Deepfake Detection Tool</div>
+
+        <div class="content">
+            <h2 class="result-text general-sans-font" id="output">...</h2>
+            <br>
+            <p class="description general-sans-font">Detection Confidence:<br />
+            <p class="description general-sans-font" style="font-weight: bold;" id="score"></p>
+            </p>
+
+            <div id="tips-container" class="tips-box">
+                <!-- Tips will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
